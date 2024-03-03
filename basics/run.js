@@ -23,23 +23,18 @@ function diagonalDifference0(arr) {
 }
 
 function diagonalDifference(arr) {
-	let acum1 = 0;
-	let acum2 = 0;
-	let cursor = arr.length;
+	let primaryDiagonalSum = 0;
+	let secondaryDiagonalSum = 0;
+	let arrayLength = arr.length;
 
-	for (let i = 0; i < arr.length; i++) {
-		const element = arr[i][i];
-		acum1 += element;
+	for (let i = 0; i < arrayLength; i++) {
+		primaryDiagonalSum += arr[i][i];
+		secondaryDiagonalSum += arr[i][arrayLength - 1 - i];
 	}
 
-	for (let j = 0; j < arr.length; j++) {
-		cursor--;
-		const element = arr[j][cursor];
-		acum2 += element;
-	}
-
-	return Math.abs(acum1 - acum2);
+	return Math.abs(primaryDiagonalSum - secondaryDiagonalSum);
 }
+
 const result = diagonalDifference([
 	[1, 0, 4],
 	[0, 2, 0],
