@@ -84,3 +84,86 @@ function staircase(n) {
 	}
 }
 //staircase(6);
+
+// 6)
+function miniMaxSum(arr: number[]): void {
+	const maximo: number = Math.max(...arr);
+	const minimo: number = Math.min(...arr);
+
+	if (maximo === minimo) {
+			const suma = arr.reduce((acum, value) => acum + value, 0);
+			const resultado = suma - maximo;
+			console.log(resultado, resultado);
+	} else {
+			const arrSinMax: number[] = arr.filter(numero => numero !== maximo)
+			const calculateMin: number = arrSinMax.reduce((acum, value) => acum + value)
+
+			const arrSinMin: number[] = arr.filter(numero => numero !== minimo);
+			const calculateMax: number = arrSinMin.reduce((acum, value) => acum + value);
+
+			console.log(calculateMin, calculateMax)
+	}
+}
+
+// 7)
+function birthdayCakeCandles(candles: number[]): number {
+	const maximo: number = Math.max(...candles);
+	let count: number = 0;
+
+	for (let i = 0; i < candles.length; i++) {
+			if (candles[i] === maximo) {
+					count++;
+			}
+	}
+	return count;
+}
+
+// 8)
+function timeConversion(s: string): string {
+	const arrString: string[] = s.split(':');
+
+	let hora: string = arrString[0];
+	const minutos: string = arrString[1];
+	const segundos: string = arrString[2].replace(/(PM|AM)$/, '');
+
+	const isPM: boolean = arrString[2].includes('PM');
+	const isAM: boolean = arrString[2].includes('AM');
+
+	hora = hora === '12' && isAM
+			? '00'
+			: hora;
+
+	if (isPM && hora !== '12') {
+			return `${Number(hora) + 12}:${minutos}:${segundos}`;
+	}
+
+	return `${hora}:${minutos}:${segundos}`;
+
+}
+
+// string.padStar -> Rellena una longitud con los parametros dados (cantidad, relleno)
+
+// Refactor
+function timeConversion(s: string): string {
+    
+	const arrString: string[] = s.split(':');
+
+	let [hora, minutos, segundos] = s.split(':');
+	
+	const isPM: boolean = segundos.includes('PM');
+	const isAM: boolean = segundos.includes('AM');
+	
+	segundos = segundos.replace(/(PM|AM)$/, '');
+
+	hora = hora === '12' && isAM
+			? '00'
+			: hora;
+
+	if (isPM && hora !== '12') {
+			return `${Number(hora) + 12}:${minutos}:${segundos}`;
+	}
+
+	return `${hora}:${minutos}:${segundos}`;
+
+}
+
